@@ -1,3 +1,28 @@
+# Настройка проекта
+Перейдите в папку docker_compose/simple_project и выполните docker compose up -d. Будет создан образ приложени, базы, nginx и swagger.
+
+Переменные окружения для подключения к базе данных должны быть описаны в файле .env, расположеном в папке simple_project.
+Пример файла:
+
+```
+POSTGRES_USER=app
+POSTGRES_PASSWORD=123qwe
+POSTGRES_HOST=db
+POSTGRES_PORT=5432
+POSTGRES_DB=movies_database
+SECRET_KEY = 'django-insecure-@k04vsjy@qv3m573&94kgq_kjj@lad^^d%hr_o2sk!a6+c3ne9'
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1,[::1]
+```
+
+Теперь, для заполнения БД проверочными данными вы можете запустить docker exec -it service python manage.py loaddata /opt/app/fixtures/fixture.json.
+
+Так же нужно создать пользователя docker exec -it service python manage.py createsuperuser
+
+После этого админка с записями должна стать доступна на локальном хосте по адресу http://localhost/admin/
+
+API V1 будет доступно по адресу http://localhost/api/v1/movies/
+
 # Проектное задание: Docker-compose
 
 Приступим к улучшению сервиса в области DevOps. Настройте запуск всех компонентов системы — Django, Nginx и Postgresql — с использованием docker-compose.
