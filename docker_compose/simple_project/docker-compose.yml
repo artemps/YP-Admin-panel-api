@@ -5,6 +5,7 @@ services:
     container_name: service
     volumes:
       - static_volume:/opt/app/static/
+      - ./fixtures:/opt/app/fixtures
     env_file: ./.env
     ports:
       - "8000:8000"
@@ -33,6 +34,16 @@ services:
     restart: always
     ports:
       - "80:80"
+
+  swagger:
+    image: swaggerapi/swagger-ui
+    container_name: swagger
+    volumes:
+      - ./openapi.yaml:/swagger.yaml
+    environment:
+      - SWAGGER_JSON=/swagger.yaml
+    ports:
+      - "8080:8080"
 
 volumes:
   postgres_data:

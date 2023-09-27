@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED 1
 ENV UWSGI_PROCESSES 4
 ENV UWSGI_THREADS 8
 ENV UWSGI_HARAKIRI 60
-ENV DJANGO_SETTINGS_MODULE 'example.settings'
+ENV DJANGO_SETTINGS_MODULE 'config.settings'
 
 COPY requirements.txt requirements.txt
 COPY uwsgi/uwsgi.ini uwsgi.ini
